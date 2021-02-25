@@ -1,6 +1,22 @@
+/*Affects entire document */
+html {
+	scroll-behavior:smooth; /* This ensures that the page scrolling is smooth when the nav bar is clicked */
+}
 /* Body */
 body {
 	margin: 0%; /* This ensures our site displays all the way to the edge of the browser screen */
+	opacity: 1; /* This and transition affect the page loading fade in affect */
+	transition: 3s opacity; /* This causes a 3 second fade in, you can change this time if you choose */
+		letter-spacing: .2vw;
+		font-family: Avant Garde, Helvetica;
+		font-size: 1.5vw;
+
+}
+
+/* This section contributes to the fade effect for the page that occurs when the page is loaded */
+body.fade-out {
+	opacity: .1; /* This sets the level of opacity at the start of the page loadb*/
+	transition: none;
 }
 
 /* Navbar */
@@ -11,6 +27,9 @@ body {
 	top: 0; /* This ensures no space is displayed above the navbar */
 	width: 100%; /* This makes the navbar span the entire width of the page */
 	z-index: 1; /*This ensures other elements don't display over the navbar */
+	position: fixed;
+		-webkit-animation: moveNav 5s; /* Safari 4.0 - 8.0 */
+		animation: moveNav 5s;
 }
 
 /* Navbar text */
@@ -23,6 +42,28 @@ body {
 	font-family: Avant Garde, Helvetica; /* This specifies the font family for text on our navbar */
 	font-size: 20px; /* This specifies the font size for text on our navbar */
 	text-align: center; /* This centers the text within its container */
+	position: relative;
+		-webkit-animation: movenavText 5.75s; /* Safari 4.0 -8.0 */
+	animation: movenavText 5.75s;
+		letter-spacing: .2vw;
+}
+
+/* This animation effect for moving the nav bar in from above the top of the screen upon page load */
+@keyframes moveNav {
+	from {left: -100vw;}
+	to {left: 0vw;}
+}
+
+/* The animation effect for moving the nav bar in from above the top of the screen upon page load */
+@keyframes movenavText {
+	from {top: -100vw;}
+	to {top: 0vw;}
+}
+
+/* This animation effect causes the overlay video text to move up from the bottom of the page upon page load */
+@keyframes movevideoText {
+	from {top: -100vw;}
+	to {top: 0px;}
 }
 
 /* Navbar hover effect */
@@ -30,11 +71,24 @@ body {
 	background-color: #F4F4F4; /*  This defines the background color that will display when you hover over the text on the navbar */
 	color: black; /* This defines the font color that will display when you hover over the text on the navbar */
 	font-weight: bold; /* This makes the text on the navbar bold when hovered over */
+	cursor: pointer;
+	-webkit-transition-duration: 1s;
+	transition-duration: 1s;
 }
 
 /* Navbar home button */
 .Navbar a.active { /* The active selector styles a link */
   background-color: darkgray;  /* This specifies the background color behind the Home button on the navbar */ 
+}
+
+/* This causes the video to zoom out from a zoomed in position upon page load */
+@keyframes zoominoutsinglefeatured {
+	0% {
+		transform: scale (1.5, 1.5);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
 }
 
 /* Video */
@@ -53,6 +107,123 @@ body {
 	width: 100%;
 	padding: 20px; /* This adds padding around the text so that the background goes slightly beyond the text */
 	margin-top: 23%;
+position: relative;
+-webkit-animation: moveNav 4s; /* Safari 4.0 - 8.0 */
+animation: movevideoText 4s;
+}
+
+/* Slideshow Styling */
+#Slideshow_Background {
+	background: rgba(255,255,255, 0.35); /* This creates a slightly transparent white background that's placed over the video */
+}
+
+.mySlides {
+	display: none;
+}
+
+@-webkit-keyframes fade {
+	from {opacity: .4;}
+	to {opacity: 1}
+}
+
+/* Slideshow section / Container */
+#Slideshow_Container {
+	width: 39.5vw;
+	height: auto;
+	padding-top: 4%;
+	position: relative;
+	margin: auto;
+
+}
+
+/* Images contained within slideshow */
+.Slide_Show_Images {
+	vertical-align: middle;
+	height: auto;
+	box-shadow: 0px 5px 10px 12px rgba(0, 0, 0, .75);
+	width: auto;
+}
+
+/*Next and previous buttoms */
+.Previous, .Next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 2vw;
+	margin-top: -0vw;
+	color: darkgray;
+	font-weight: bold;
+	font-size: 1.5vw;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	transition: 0.6s ease;
+}
+
+/* Position the right-hand next button */
+.Next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* Hover effect on slide show buttons */
+.Previous:hover, .Next:hover {
+	background-color:rgba(0,0,0,0.8);
+	color: white;
+}
+
+/* Slideshow text */
+.text {
+	color:white;
+	padding: 1vw;
+	position:absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	font-family: Perpetua, Rockwell Extra Bold;
+	letter-spacing: .1vw;
+	background-color: rgba(0, 0, 0, .75);
+	font-weight: bold;
+	border-radius: 7px 7px 7px 7px;
+}
+
+/* Number text (1/6, 2/6, etc.) - we have set this display to none, which means these are hidden */
+.Slide_Number{
+	color: white;
+	position: absolute;
+	top: 0;
+	font-family: Perpetua, Rockwell Extra Bold;
+	letter-spacing: .1vw;
+	font-size: 1.5vw;
+	font-weight: bold;
+	display: none;
+}
+
+/* The dots undeer the slideshow */
+.dot {
+	cursor: pointer;
+	height: 1vw;
+	width: 1vw;
+	margin: .25vw;
+	background-color: white;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+	position: relative;
+	z-index: 1;
+}
+
+/* Hover effect for slideshow dots */
+.active, .dot:hover {
+	background-color: black;
+}
+
+/* Fading animation for slideshow */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
 }
 
 /* Table - this section covers the styling of the columns and rows within our table */
@@ -144,6 +315,82 @@ img {
 	display: block;	/* By specifying block display we can ensure our images are able to be centered */
 }
 
+/* Center align element hover effect */
+center: hover {
+	transition: transform 2s;
+	transform: scale (1.1);
+}
+
+/* Paragraph element hover effect */
+p:hover {
+		color: #00004d;
+	transition: transform 1s;
+	transform: scale (1.01);
+}
+
+/* Heading 1 element hover effect */
+h1:hover {
+	color: black;
+	font-weight: normal; /* Makes the text no longer bold when hovered over */
+
+}
+
+/* Image element hover effects */
+img:hover {
+	filter: grayscale(5%); /* Brings back most of the image's color when hovered over */
+	transition: transform 1s;
+	transform: scale(1.1);
+}
+
+/* Contact form styling */
+
+/* Makes contact form button slide in from right on page load */
+@keyframes movePopup {
+	from { right: -40vw;}
+	to { bottom: 1.75vw;}
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.Pop_Up_Button {
+	bottom: 1.75vw;
+	right: 1.75vw;
+	width: 25vw;
+	background-color: white;
+	color: black;
+	border: solid;
+	cursor: pointer;
+	position: fixed;
+	-webkit-animation: movePopup 5s;
+}
+
+/* the pop-up form hidden by default */
+.form-popup {
+	border: 3px solid #f0f1f0;
+	z-index: 8;
+	display: none;
+	position: fixed;
+	bottom: 6px;
+	right: 6px;
+}
+
+/* Form styling */
+.form-container {
+	max-width: 49vw;
+	padding: 9px;
+	background-color: white;
+}
+
+/* Input fields */
+.form-container input[type=text], .form-container input[type=password] {
+	width: 100%;
+	padding: .93vw;
+	margin: .6vw 0 .6vw 0;
+	border: none;
+	background: gainsboro;
+	font-family: Helvetica, Avant Garde;
+	font-size: 1vw
+}
+
 /* Contact form */
 input[type=text] { /* This covers the input sections of the contact form */
 	width: 100%;
@@ -158,28 +405,44 @@ input[type=text] { /* This covers the input sections of the contact form */
 }
 
 /* Submit button */
-input[type=submit] { /* This covers the submit button for the contact form */
-	background-color: black;
-	color: white;
-	font-weight: bold;
-	padding: 12px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	display: block;
-	margin-left: auto;
-	margin-right: auto; 
-	font-family: Perpetua, Rockwell Extra Bold;
+.form-container .btn {
+	background-color: white;
+	color: black;
+	border-color: black;
+	margin-bottom:1vh;
 }
 
-/* Hover effect for submit button */
-input[type=submit]:hover {
-	background-color: white; /* Makes the background turn white when hovered over */
-	color: black; /* Makes the font turn black when hovered over */
-	font-weight: bold; /* Makes the font bold when hovered over */
-	transform: scale(1.5); /* Makes the button increase 1.5 times in size */ 
-	transition: transform 1.5s; /* Makes the transform effect last 1.5 seconds from start to finish */
+/* Close button */
+.form-container .cancel {
+	background-color: black;
+	color: white;
+	border-color: gray;
 }
+
+/* Button styling */
+button {
+	font-family: "Trebuchet MS", Optima;
+	letter-spacing: .3vw;
+	font-size: 1.5vw;
+	font-weight: bold;
+	padding: 1.5vw 1.5vw;
+	border-style: solid;
+	cursor: pointer;
+	width: 100%;
+	height: auto;
+}
+
+/* Hover effect for buttons */
+button:hover, .form-container .btn:hover{
+	color:white;
+	background-color: black;
+	-webkit-transition-duration: 1s;
+	transition-duration: 1s;
+	border-style: solid;
+	border-color: silver;
+}
+
+
 
 /* Form elememt */
 form { 
@@ -193,6 +456,15 @@ form {
 center:hover {
 	transition: transform 2s;
 	transform: scale(1.1);
+}
+
+.form-container .cancel:hover{
+	color: white;
+	background-color: darkred;
+	-webkit-transition-duration: 1s;
+	transition-duration: 1s;
+	border-style: solid;
+	border-color: black;
 }
 
 /* Paragraph element hover effect */
