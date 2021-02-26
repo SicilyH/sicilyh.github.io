@@ -463,7 +463,6 @@ center:hover {
 	background-color: darkred;
 	-webkit-transition-duration: 1s;
 	transition-duration: 1s;
-	border-style: solid;
 	border-color: black;
 }
 
